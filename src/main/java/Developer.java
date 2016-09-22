@@ -5,20 +5,20 @@
 import javax.persistence.*;
 
 
-//@Entity
-//@Table(name = "HIBERNATE_DEVELOPERS")
+@Entity
+@Table(name = "HIBERNATE_DEVELOPERS")
 public class Developer {
-   // @Id
-   // @GeneratedValue (strategy = GenerationType.AUTO)
-   // @Column (name = "id")
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column (name = "id")
     private int id;
-   // @Column (name = "FIRST_NAME")
+    @Column (name = "FIRST_NAME")
     private String firstName;
-   // @Column (name = "LAST_NAME")
+    @Column (name = "LAST_NAME")
     private String lastName;
-    //@Column (name = "SPECIALTY")
+    @Column (name = "SPECIALTY")
     private String specialty;
-  //  @Column (name = "EXPERIENCE")
+    @Column (name = "EXPERIENCE")
     private int experience;
 
     /**
