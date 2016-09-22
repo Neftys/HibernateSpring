@@ -1,3 +1,4 @@
+import MyHib.Util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,8 +12,9 @@ public class DeveloperRunner {
 
 
     public static void main(String[] args) {
-        sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-
+        HibernateUtil hibernateUtil = new HibernateUtil();
+        sessionFactory = new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
+        System.out.println(hibernateUtil);
         DeveloperRunner developerRunner = new DeveloperRunner();
 
         System.out.println("Adding Developer's records to the database");

@@ -1,4 +1,4 @@
-package MyHib;
+package MyHib.DAO;
 
 import javax.persistence.*;
 
@@ -13,19 +13,18 @@ public class Book {
     String name;
     String description;
 
-    public Book(int id, String name, String description) {
-        this.id = id;
+    public Book( String name, String description) {
+
         this.name = name;
         this.description = description;
     }
 
     public Book() {
-
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column (name = "id")
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -33,7 +32,8 @@ public class Book {
     public void setId(int id) {
         this.id = id;
     }
-    @Column (name = "name")
+
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -41,7 +41,8 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
-    @Column (name = "description")
+
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
