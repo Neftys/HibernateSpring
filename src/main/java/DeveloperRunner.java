@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-
+import java.util.ArrayList;
 
 
 public class DeveloperRunner {
@@ -23,14 +23,15 @@ public class DeveloperRunner {
         Integer developerId3 = developerRunner.addDeveloper("Peter", "Team Lead", "Java Team Lead", 6);
 
         System.out.println("List of Developers:");
-        //developerRunner.listDevelopers();
+        developerRunner.listDevelopers();
+
 
         System.out.println("Removing \'Some Developer\' and updating \'Proselyte Developer\''s experience:");
         developerRunner.removeDeveloper(developerId2);
         developerRunner.updateDeveloper(developerId1, 3);
 
         System.out.println("Final list of Developers:");
-       // developerRunner.listDevelopers();
+        developerRunner.listDevelopers();
         sessionFactory.close();
     }
 
@@ -47,13 +48,13 @@ public class DeveloperRunner {
         return developerId;
     }
 
-/*
+
     public void listDevelopers() {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         transaction = session.beginTransaction();
-        List developers =  session.createQuery("FROM Developer").list();
+        ArrayList<Developer> developers = (ArrayList<Developer>) session.createQuery("FROM Developer").list();
 
         for (Developer developer : developers) {
             System.out.println(developer);
@@ -61,7 +62,7 @@ public class DeveloperRunner {
         }
         session.close();
     }
-*/
+
 
     public void updateDeveloper(int developerId, int experience) {
         Session session = sessionFactory.openSession();
@@ -85,4 +86,6 @@ public class DeveloperRunner {
         transaction.commit();
         session.close();
     }
+
+
 }

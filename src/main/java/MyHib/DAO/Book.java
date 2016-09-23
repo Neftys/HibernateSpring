@@ -13,7 +13,7 @@ public class Book {
     String name;
     String description;
 
-    public Book( String name, String description) {
+    public Book(String name, String description) {
 
         this.name = name;
         this.description = description;
@@ -49,5 +49,14 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
