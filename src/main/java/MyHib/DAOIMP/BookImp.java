@@ -2,12 +2,14 @@ package MyHib.DAOIMP;
 
 import MyHib.DAO.Book;
 import MyHib.Util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tu_gevelav on 22.09.2016.
@@ -67,9 +69,15 @@ public class BookImp {
         Session session =sessionFactory.openSession();
         Transaction transaction =session.getTransaction();
         transaction.begin();
-        ArrayList<Book> arrayList =(ArrayList<Book>) session.createQuery("FROM book").list();
+        ArrayList<Book> arrayList =(ArrayList<Book>) session.createQuery("FROM Book where name like '%d%'").list();
         session.close();
         return arrayList;
+    }
+    public List<Book> CriteriaList (){
+        sessionFactory=HibernateUtil.getSessionFactory();
+        Session session =sessionFactory.openSession();
+        Criteria criteria =session.createCriteria(Book.class);
+        return criteria.list();
     }
 
 
