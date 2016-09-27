@@ -1,27 +1,28 @@
-package MyHib.DAO;
+package MyHib.TestDao;
 
 import javax.persistence.*;
 
+
 /**
- * Created by Ниф on 26.09.2016.
+ * Created by tu_gevelav on 27.09.2016.
  */
 @Entity
-@Table(name = "author")
-public class Author {
+@Table (name ="user")
+public class User {
     private int id;
     private String name;
 
-    public Author( String name) {
 
+    public User(String name) {
         this.name = name;
     }
 
-    public Author() {
+    public User() {
     }
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -29,8 +30,7 @@ public class Author {
     public void setId(int id) {
         this.id = id;
     }
-
-    @Column(name = "name")
+    @Column(name="name")
     public String getName() {
         return name;
     }
