@@ -1,6 +1,9 @@
 package MyHib.DAO;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tu_gevelav on 22.09.2016.
@@ -8,15 +11,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class Book {
-    int id;
-    String name;
-    String description;
+public class Book implements Serializable {
+    private int id;
+    private String name;
+    private List<Genre> arrayList ;
 
-    public Book(String name, String description) {
-
+    public Book(String name) {
         this.name = name;
-        this.description = description;
+
     }
 
     public Book() {
@@ -24,13 +26,9 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "idBook")
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Column(name = "name")
@@ -38,17 +36,26 @@ public class Book {
         return name;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable
+            (name = "bookgenre"
+                    , joinColumns = @JoinColumn(name = "idbook")
+                    , inverseJoinColumns = @JoinColumn(name ="idgenre")
+            )
+    public List<Genre> getArrayList() {
+        return arrayList;
+    }
+
+    public void setArrayList(List<Genre> arrayList) {
+        this.arrayList = arrayList;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -56,7 +63,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", arrayList= size " + arrayList.size() +
                 '}';
     }
 }

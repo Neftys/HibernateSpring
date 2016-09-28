@@ -1,7 +1,7 @@
-package MyHib.TestDao;
+package MyHib.TestDaoOnetoOne;
 
 import javax.persistence.*;
-
+import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Created by tu_gevelav on 27.09.2016.
  */
@@ -15,8 +15,8 @@ public class Address {
 
 
     @Id
-    @Column (name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name= "idAdress")
+    @GeneratedValue(strategy = IDENTITY)
     public int getId() {
         return id;
     }
@@ -26,8 +26,7 @@ public class Address {
         return arg1;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.ALL)
     public User getUser() {
         return user;
     }

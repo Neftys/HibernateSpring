@@ -1,81 +1,82 @@
 package MyHib.DAOIMP;
 
-import MyHib.DAO.Book;
+
+import MyHib.DAO.Genre;
 import MyHib.Util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tu_gevelav on 22.09.2016.
+ * Created by tu_gevelav on 28.09.2016.
  */
-public class BookImp {
+public class GenreIMP {
     private static SessionFactory sessionFactory;
     private Integer id;
 
-    public Integer add (Book book){
+    public Integer add (Genre genre){
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction= session.getTransaction();
         transaction.begin();
-        id=(Integer)session.save(book);
+        id=(Integer)session.save(genre);
         transaction.commit();
         session.close();
         return id;
     }
 
-    public void delete ( Book book){
+    public void deleteGenre ( Genre genre){
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction= session.getTransaction();
         transaction.begin();
-        session.delete(book);
+        session.delete(genre);
+
         transaction.commit();
         session.close();
+
     }
 
-    public Book get(Integer integer){
+    public Genre getGenre(Integer integer){
         sessionFactory=HibernateUtil.getSessionFactory();
         Session session=sessionFactory.openSession();
         Transaction transaction =session.getTransaction();
         transaction.begin();
-        Book book=(Book)session.get(Book.class,integer);
+        Genre genre=(Genre )session.get(Genre.class,integer);
+
         session.close();
-        return book;
+        return genre;
     }
 
-    public void update(Book book){
+
+
+    public void updateGenre ( Genre genre){
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction= session.getTransaction();
         transaction.begin();
-        session.update(book);
+        session.update(genre);
         transaction.commit();
         session.close();
-    }
 
-    public ArrayList<Book> getList (){
+    }
+    public ArrayList<Genre> getListGenre (){
         sessionFactory =HibernateUtil.getSessionFactory();
         Session session =sessionFactory.openSession();
         Transaction transaction =session.getTransaction();
         transaction.begin();
-        ArrayList<Book> arrayList =(ArrayList<Book>) session.createQuery("FROM Book where name like '%d%'").list();
+        ArrayList<Genre> arrayList =(ArrayList<Genre>) session.createQuery("FROM Genre where name like '%d%'").list();
         session.close();
         return arrayList;
     }
-
-    public List<Book> CriteriaList (){
+    public List<Genre> CriteriaList (){
         sessionFactory=HibernateUtil.getSessionFactory();
         Session session =sessionFactory.openSession();
-        Criteria criteria =session.createCriteria(Book.class);
+        Criteria criteria =session.createCriteria(Genre.class);
         return criteria.list();
     }
-
-
-
 }

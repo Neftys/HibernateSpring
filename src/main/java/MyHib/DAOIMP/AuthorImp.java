@@ -20,7 +20,7 @@ public class AuthorImp  {
     private static SessionFactory sessionFactory;
     private Integer id;
 
-    public Integer addBook(Author author) {
+    public Integer add(Author author) {
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
@@ -31,7 +31,7 @@ public class AuthorImp  {
         return id;
     }
 
-    public void deleteBook(Author author) {
+    public void delete(Author author) {
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
@@ -43,7 +43,7 @@ public class AuthorImp  {
 
     }
 
-    public Author getBook(Integer integer) {
+    public Author get(Integer integer) {
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
@@ -55,7 +55,7 @@ public class AuthorImp  {
     }
 
 
-    public void updateBook(Author author) {
+    public void update(Author author) {
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
@@ -66,7 +66,7 @@ public class AuthorImp  {
 
     }
 
-    public ArrayList<Author> getListBook() {
+    public ArrayList<Author> getList() {
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
