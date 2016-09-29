@@ -1,0 +1,38 @@
+CREATE TABLE `author` (
+  `idAuthor` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idAuthor`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+SELECT * FROM onlinelibrary.author;
+
+CREATE TABLE `book` (
+  `idbook` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idbook`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `bookauthor` (
+  `idbook` int(11) NOT NULL,
+  `idauthor` int(11) NOT NULL,
+  PRIMARY KEY (`idbook`,`idauthor`),
+  KEY `fk_idauthor_idx` (`idauthor`),
+  CONSTRAINT `fk_idauthor` FOREIGN KEY (`idauthor`) REFERENCES `author` (`idAuthor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idbook1` FOREIGN KEY (`idbook`) REFERENCES `book` (`idbook`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `bookgenre` (
+  `idbook` int(11) NOT NULL,
+  `idgenre` int(11) NOT NULL,
+  PRIMARY KEY (`idbook`,`idgenre`),
+  KEY `fk_idgenre_idx` (`idgenre`),
+  CONSTRAINT `fk_idbook` FOREIGN KEY (`idbook`) REFERENCES `book` (`idbook`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_idgenre` FOREIGN KEY (`idgenre`) REFERENCES `genre` (`idgenre`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `genre` (
+  `idgenre` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idgenre`)
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
