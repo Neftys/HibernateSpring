@@ -6,12 +6,9 @@ import MyHib.DAO.Genre;
 import MyHib.DAOIMP.AuthorImp;
 import MyHib.DAOIMP.BookImp;
 import MyHib.DAOIMP.GenreIMP;
-import com.sun.java.util.jar.pack.*;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by tu_gevelav on 27.09.2016.
@@ -76,7 +73,8 @@ public class Constructor {
         Book book =new Book("book");
 
         for (int i=0;i<10;i++){
-            book.getArrayList().add(new Genre("genre"));
+            book.getGenreList().add(new Genre("genre"));
+            book.getAuthorSet().add(new Author("Gogol"));
         }
         bookImp.add(book);
     }

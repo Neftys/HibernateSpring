@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ниф on 26.09.2016.
@@ -13,7 +14,7 @@ import java.util.List;
 public class Author implements Serializable {
     private int id;
     private String name;
-    private List<Book> bookList ;
+    private Set<Book> bookSet ;
 
     public Author( String name) {
 
@@ -43,14 +44,22 @@ public class Author implements Serializable {
         this.name = name;
     }
 
-    @Transient
-    public List<Book> getBookList() {
-        return bookList;
+
+
+    public void setBookSet(Set<Book> bookSet) {
+        this.bookSet = bookSet;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable
+            (name = "bookauthor"
+                    , joinColumns = @JoinColumn(name = "idauthor")
+                    , inverseJoinColumns = @JoinColumn(name ="idbook")
+            )
+    public Set<Book> getBookSet() {
+        return bookSet;
     }
+
 
     @Override
     public String toString() {
