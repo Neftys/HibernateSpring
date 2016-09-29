@@ -3,24 +3,22 @@ package MyHib.DAO;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by tu_gevelav on 22.09.2016.
  */
 
-    @Entity
-    @Table(name = "book")
-    public class Book implements Serializable {
+@Entity
+@Table(name = "book")
+public class Book implements Serializable {
     private int id;
     private String name;
-    private List<Genre> genreList =new ArrayList<Genre>();
-    private Set<Author> authorSet =new HashSet<Author>();
+    private List<Genre> arrayList =new ArrayList<Genre>();
 
     public Book(String name) {
         this.name = name;
+
     }
 
     public Book() {
@@ -38,40 +36,19 @@ import java.util.Set;
         return name;
     }
 
-
-
-    public void setAuthorSet(Set<Author> authorSet) {
-        this.authorSet = authorSet;
-    }
-
-
-        @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        @JoinTable
-                (name = "bookgenre"
-                        , joinColumns = @JoinColumn(name = "idbook")
-                        , inverseJoinColumns = @JoinColumn(name ="idgenre")
-                )
-        public List<Genre> getGenreList() {
-            return genreList;
-        }
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable
-            (name = "bookauthor"
+            (name = "bookgenre"
                     , joinColumns = @JoinColumn(name = "idbook")
-                    , inverseJoinColumns = @JoinColumn(name ="idauthor")
+                    , inverseJoinColumns = @JoinColumn(name ="idgenre")
             )
-    public Set<Author> getAuthorSet() {
-        return authorSet;
+    public List<Genre> getArrayList() {
+        return arrayList;
     }
 
-
-
-
-    public void setGenreList(List<Genre> arrayList) {
-        this.genreList = arrayList;
+    public void setArrayList(List<Genre> arrayList) {
+        this.arrayList = arrayList;
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -86,7 +63,7 @@ import java.util.Set;
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-        //        ", arrayList= size " + genreList.size() +
+                ", arrayList= size " + arrayList.size() +
                 '}';
     }
 }
