@@ -2,6 +2,7 @@ package MyHib.WorkSpace;
 
 
 import MyHib.Constructor.Constructor;
+import MyHib.DAO.Author;
 
 
 /**
@@ -10,8 +11,10 @@ import MyHib.Constructor.Constructor;
 public class WorkSpace {
     public static void main(String[] args) {
         Constructor constructor =new Constructor();
-        constructor.addSomeBook();
-      //  constructor.DeleteAll();
+        constructor.Delete(Author.class,16);
+
+        //constructor.addSomeBook();
+        // constructor.DeleteAll();
 
 
 
