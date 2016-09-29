@@ -51,4 +51,12 @@ public class Author implements Serializable {
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

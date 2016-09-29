@@ -37,10 +37,8 @@ public class AuthorImp  {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         session.delete(author);
-
         transaction.commit();
         session.close();
-
     }
 
     public Author get(Integer integer) {
@@ -63,7 +61,6 @@ public class AuthorImp  {
         session.update(author);
         transaction.commit();
         session.close();
-
     }
 
     public ArrayList<Author> getList() {

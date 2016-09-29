@@ -29,7 +29,7 @@ public class GenreIMP {
         return id;
     }
 
-    public void deleteGenre ( Genre genre){
+    public void delete ( Genre genre){
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction= session.getTransaction();
@@ -41,7 +41,7 @@ public class GenreIMP {
 
     }
 
-    public Genre getGenre(Integer integer){
+    public Genre get(Integer integer){
         sessionFactory=HibernateUtil.getSessionFactory();
         Session session=sessionFactory.openSession();
         Transaction transaction =session.getTransaction();
@@ -54,7 +54,7 @@ public class GenreIMP {
 
 
 
-    public void updateGenre ( Genre genre){
+    public void update ( Genre genre){
         sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction= session.getTransaction();
@@ -64,7 +64,7 @@ public class GenreIMP {
         session.close();
 
     }
-    public ArrayList<Genre> getListGenre (){
+    public ArrayList<Genre> getList (){
         sessionFactory =HibernateUtil.getSessionFactory();
         Session session =sessionFactory.openSession();
         Transaction transaction =session.getTransaction();

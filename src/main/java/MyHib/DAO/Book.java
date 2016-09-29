@@ -9,16 +9,15 @@ import java.util.List;
  * Created by tu_gevelav on 22.09.2016.
  */
 
-@Entity
-@Table(name = "book")
-public class Book implements Serializable {
+    @Entity
+    @Table(name = "book")
+    public class Book implements Serializable {
     private int id;
     private String name;
-    private List<Genre> arrayList ;
+    private List<Genre> arrayList =new ArrayList<Genre>();
 
     public Book(String name) {
         this.name = name;
-
     }
 
     public Book() {
@@ -36,7 +35,7 @@ public class Book implements Serializable {
         return name;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable
             (name = "bookgenre"
                     , joinColumns = @JoinColumn(name = "idbook")
