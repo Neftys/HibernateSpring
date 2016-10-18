@@ -11,8 +11,6 @@ import MyHib.DAO.Author;
 public class WorkSpace {
     public static void main(String[] args) {
         Constructor constructor =new Constructor();
-
-
-
+    constructor.addSomeBook();
     }
 }
