@@ -4,9 +4,10 @@
     <title>Second Page</title>
 </head>
 <body>
-Введенное имя: ${userJSP.name};
+Введенное имя: ${bookJSP.id};
 <br/>
-Введенный пароль: ${userJSP.password};
+Введенный пароль: ${bookJSP.name};
+
 <br/>
 </body>
 </html>
